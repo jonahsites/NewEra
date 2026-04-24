@@ -32,28 +32,28 @@ const modelData = [
 
 const sections = [
   {
-    label: "01 — Hybrid Super SUV",
+    label: "01 — Ultra Performance",
     title: "Lamborghini\nUrus SE",
-    desc: "The pinnacle of high-performance utility. 800 CV of lightning-fast acceleration and uncompromising power.",
-    tags: ["High Velocity", "800 CV", "Turbocharged"],
-    color: "#050505",
-    accent: "#E31B23"
+    desc: "A bold new era of hybrid power. 800 CV of electrified performance paired with uncompromising Miami style.",
+    tags: ["Hybrid-Select", "800 CV", "Elite Class"],
+    color: "#080808",
+    accent: "#C5A47E"
   },
   {
-    label: "02 — M Performance",
+    label: "02 — German Precision",
     title: "BMW\nM4 Competition",
-    desc: "Precision engineering meets aggressive design. A straight-six masterpiece that delivers raw power and surgical handling.",
-    tags: ["M-Powered", "503 HP", "Isle of Man Green"],
-    color: "#050505",
-    accent: "#E31B23"
+    desc: "The definitive choice for the ultimate driving purist. Surgical handling and raw straight-six power redefined.",
+    tags: ["M-Series", "503 HP", "Isle of Man"],
+    color: "#080808",
+    accent: "#C5A47E"
   },
   {
-    label: "03 — Track Focused",
+    label: "03 — British Artistry",
     title: "McLaren\n570S Coupe",
-    desc: "A pure driver's car. Lightweight carbon construction and a mid-mounted V8 designed for the ultimate adrenaline rush.",
-    tags: ["Carbon Tube", "V8 Bi-Turbo", "Monocell II"],
-    color: "#050505",
-    accent: "#E31B23"
+    desc: "Lightweight carbon construction meeting surgical precision. A pure mid-engine experience for the absolute connoisseur.",
+    tags: ["Carbon-Monocell", "Track-Ready", "V8-Twin"],
+    color: "#080808",
+    accent: "#C5A47E"
   }
 ];
 
@@ -505,9 +505,9 @@ const Showcase: React.FC = () => {
       <div className="fixed top-24 right-8 z-100 pointer-events-auto">
         <button
           onClick={() => setIsEditMode(!isEditMode)}
-          className={`flex items-center gap-2 px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all ${
+          className={`flex items-center gap-3 px-6 py-3 rounded-full text-[10px] font-bold uppercase tracking-[0.2em] transition-all ${
             isEditMode 
-              ? 'bg-accent text-luxury-black shadow-[0_0_20px_rgba(197,164,126,0.3)]' 
+              ? 'bg-accent text-black shadow-2xl' 
               : 'bg-white/5 border border-white/10 text-white/60 hover:bg-white/10 hover:text-white'
           }`}
         >
@@ -537,16 +537,16 @@ const Showcase: React.FC = () => {
               {section.label}
             </div>
             
-            <h2 className="text-5xl md:text-8xl font-serif font-bold mb-8 leading-[0.85] tracking-tighter whitespace-pre-line uppercase">
+            <h2 className="text-5xl md:text-8xl font-display font-bold mb-8 leading-[0.85] tracking-tighter whitespace-pre-line uppercase">
               {section.title.split('\n').map((line, idx) => (
-                <span key={idx} className="block last:text-white/40">
+                <span key={idx} className="block last:text-white/30 last:font-light">
                   {line}
                 </span>
               ))}
             </h2>
 
             <div className={`flex flex-col gap-8 ${i % 2 === 0 ? 'items-start' : 'items-end'}`}>
-              <p className="text-white/70 text-base md:text-lg leading-relaxed max-w-sm font-light">
+              <p className="text-white/60 text-base md:text-lg leading-relaxed max-w-sm font-light">
                 {section.desc}
               </p>
               
@@ -554,8 +554,8 @@ const Showcase: React.FC = () => {
                 {section.tags.map((tag, j) => (
                   <span 
                     key={j} 
-                    className="px-4 py-1.5 border border-white/10 rounded-full text-[9px] uppercase tracking-[0.2em] font-medium transition-all hover:bg-white/5"
-                    style={{ borderColor: j === 0 ? `${section.accent}44` : undefined, color: j === 0 ? section.accent : undefined }}
+                    className="px-5 py-2 border border-white/10 rounded-full text-[9px] uppercase tracking-[0.3em] font-medium transition-all hover:bg-white/5"
+                    style={{ borderColor: j === 0 ? `${section.accent}33` : undefined, color: j === 0 ? section.accent : undefined }}
                   >
                     {tag}
                   </span>

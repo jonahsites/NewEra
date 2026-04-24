@@ -1,60 +1,52 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Space Grotesk", sans-serif;
-  --color-luxury-black: #050505;
-  --color-luxury-grey: #121214;
-  --color-accent: #E31B23;
-  --color-accent-glow: rgba(227, 27, 35, 0.4);
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Outfit", sans-serif;
+  --font-serif: "Playfair Display", serif;
+  
+  --color-luxury-black: #080808;
+  --color-luxury-grey: #121212;
+  --color-accent: #C5A47E; /* Champagne Gold */
+  --color-accent-glow: rgba(197, 164, 126, 0.15);
 }
 
 @layer base {
   body {
-    background-color: #050505;
+    background-color: var(--color-luxury-black);
     color: white;
     font-family: var(--font-sans);
     overflow-x: hidden;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-weight: bold;
+    font-family: var(--font-display);
+    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: -0.05em;
+    letter-spacing: -0.02em;
   }
 }
 
 @utility text-outline {
-  color: rgba(255, 255, 255, 0.02);
-  -webkit-text-stroke: 2px rgba(255, 255, 255, 0.6);
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
 }
 
 @utility transition-editorial {
-  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-@utility bg-grid-scan {
-  background-image: 
-    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-  background-size: 40px 40px;
+@utility glass-surface {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-@utility hud-glow {
-  box-shadow: 0 0 20px var(--color-accent-glow);
+@utility luxury-border {
+  border: 1px solid rgba(197, 164, 126, 0.2);
 }
 
-@utility corner-bracket {
-  position: relative;
-  &::before, &::after {
-    content: '';
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    border-color: var(--color-accent);
-  }
-  &::before { top: 0; left: 0; border-top: 2px solid; border-left: 2px solid; }
-  &::after { bottom: 0; right: 0; border-bottom: 2px solid; border-right: 2px solid; }
+@utility section-fade {
+  mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
 }
-

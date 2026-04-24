@@ -53,30 +53,35 @@ const Inventory: React.FC<InventoryProps> = ({ onClose }) => {
     >
       <div className="max-w-[1400px] mx-auto">
         {/* Header */}
-        <div className="flex justify-between items-start mb-20">
+        <div className="flex justify-between items-start mb-24 pt-12">
           <div>
-            <div className="text-accent text-[10px] uppercase tracking-[0.5em] font-bold mb-4">Turismo Exotics High Performance Fleet</div>
-            <h2 className="text-5xl md:text-7xl font-bold uppercase tracking-tighter leading-none">
-              The <span className="text-white/20 text-outline">Power</span> <br/> On Demand.
+            <div className="text-accent text-[11px] uppercase tracking-[0.5em] font-medium mb-6">Refined Selection / Miami Hub</div>
+            <h2 className="text-5xl md:text-8xl font-display font-bold uppercase tracking-tighter leading-none mb-6">
+              Our <span className="text-white/10 text-outline italic font-serif lowercase tracking-normal">Elite</span> <br/> Collection.
             </h2>
+            <p className="text-white/40 text-lg font-light max-w-xl leading-relaxed uppercase tracking-widest text-[11px]">
+              Discover automotive excellence curated for the discerning driver.
+            </p>
           </div>
           <button 
             onClick={onClose}
-            className="p-4 border border-white/10 rounded-full hover:bg-white/5 transition-colors pointer-events-auto"
+            className="p-6 glass-surface rounded-full hover:bg-white/10 hover:border-white/20 transition-all pointer-events-auto shadow-2xl"
           >
-            <X size={24} />
+            <X size={20} />
           </button>
         </div>
 
         {/* Filters and Search */}
-        <div className="flex flex-col lg:flex-row gap-8 justify-between items-center mb-16 border-b border-white/5 pb-10">
-          <div className="flex flex-wrap gap-4">
+        <div className="flex flex-col xl:flex-row gap-12 justify-between items-center mb-20 border-b border-white/5 pb-10">
+          <div className="flex flex-wrap gap-3">
             {categories.map(cat => (
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all ${
-                  activeCategory === cat ? 'bg-accent text-black' : 'bg-white/5 border border-white/10 text-white/40 hover:text-white'
+                className={`px-8 py-3 rounded-full text-[10px] font-bold uppercase tracking-[0.2em] transition-all ${
+                  activeCategory === cat 
+                    ? 'bg-accent text-black shadow-xl ring-4 ring-accent/20' 
+                    : 'bg-white/5 border border-white/10 text-white/40 hover:text-white'
                 }`}
               >
                 {cat}
@@ -84,65 +89,66 @@ const Inventory: React.FC<InventoryProps> = ({ onClose }) => {
             ))}
           </div>
 
-          <div className="relative w-full lg:w-96">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-white/30" size={16} />
+          <div className="relative w-full xl:w-[450px]">
+            <Search className="absolute left-6 top-1/2 -translate-y-1/2 text-white/30" size={16} />
             <input 
               type="text"
-              placeholder="Search by model name..."
+              placeholder="SEARCH BY MODEL..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full bg-white/5 border border-white/10 rounded-sm py-4 pl-12 pr-6 text-sm focus:outline-none focus:border-accent/40 placeholder:text-white/20"
+              className="w-full glass-surface rounded-full py-5 pl-14 pr-8 text-[11px] font-bold uppercase tracking-[0.1em] focus:outline-none focus:border-accent/40 placeholder:text-white/10"
             />
           </div>
         </div>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           <AnimatePresence mode="popLayout">
             {filteredCars.map((car) => (
               <motion.div
                 key={car.id}
                 layout
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.4 }}
-                className="group relative bg-[#111112] border border-white/5 hover:border-accent/20 transition-all overflow-hidden"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                className="group relative bg-luxury-grey rounded-3xl overflow-hidden border border-white/5 hover:luxury-border transition-all shadow-2xl"
               >
                 {/* Image */}
-                <div className="aspect-square overflow-hidden relative">
+                <div className="aspect-[4/5] overflow-hidden relative">
                   <img 
                     src={car.image} 
                     alt={car.name} 
-                    className="w-full h-full object-cover grayscale opacity-60 group-hover:scale-110 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700"
+                    className="w-full h-full object-cover grayscale opacity-50 group-hover:scale-105 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-1000"
                     referrerPolicy="no-referrer"
                   />
-                  <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-md px-4 py-2 border border-white/10 rounded-sm">
-                    <span className="text-[10px] font-bold text-accent">${car.price}/D</span>
+                  <div className="absolute top-6 left-6 flex flex-col gap-1">
+                    <span className="text-[10px] font-bold text-accent tracking-[0.2em] uppercase font-mono">SERIES_0{car.id}</span>
+                  </div>
+                  <div className="absolute top-6 right-6 glass-surface px-6 py-2 rounded-full shadow-2xl border-white/10">
+                    <span className="text-[11px] font-bold text-white tracking-[0.1em]">${car.price}/DAY</span>
                   </div>
                 </div>
 
                 {/* Info */}
-                <div className="p-8">
-                  <div className="text-[9px] uppercase tracking-widest text-white/30 mb-2">{car.category}</div>
-                  <h3 className="text-xl font-bold uppercase tracking-tighter mb-6 group-hover:text-accent transition-colors">{car.name}</h3>
-                  <div className="grid grid-cols-2 gap-4 border-t border-white/5 pt-6">
+                <div className="p-10">
+                  <div className="text-[10px] uppercase tracking-[0.4em] text-white/30 mb-4 font-medium">{car.category}</div>
+                  <h3 className="text-2xl font-display font-medium uppercase tracking-tighter mb-8 group-hover:text-accent transition-colors leading-tight">{car.name}</h3>
+                  <div className="grid grid-cols-2 gap-8 border-t border-white/5 pt-8">
                     <div>
-                      <div className="text-[9px] uppercase text-white/20 tracking-widest mb-1">Horsepower</div>
-                      <div className="text-sm font-bold tracking-tighter">{car.hp} HP</div>
+                      <div className="text-[9px] uppercase text-white/20 tracking-[0.3em] font-medium mb-2">OUTPUT</div>
+                      <div className="text-base font-bold tracking-tighter text-white/80">{car.hp} HP</div>
                     </div>
                     <div>
-                      <div className="text-[9px] uppercase text-white/20 tracking-widest mb-1">Max Speed</div>
-                      <div className="text-sm font-bold tracking-tighter">{car.speed}</div>
+                      <div className="text-[9px] uppercase text-white/20 tracking-[0.3em] font-medium mb-2">CAPACITY</div>
+                      <div className="text-base font-bold tracking-tighter text-white/80">{car.speed}</div>
                     </div>
                   </div>
                 </div>
 
-                {/* Bottom Bar */}
-                <div className="absolute bottom-0 left-0 w-full h-[2px] bg-accent scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
-                
-                <button className="absolute bottom-8 right-8 w-10 h-10 bg-accent text-black rounded-sm flex items-center justify-center translate-y-20 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all delay-100">
-                  <ArrowUpRight size={18} />
+                {/* Interaction */}
+                <button className="absolute bottom-8 right-8 w-12 h-12 bg-white text-black rounded-full flex items-center justify-center translate-y-20 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 hover:bg-accent shadow-2xl">
+                  <ArrowUpRight size={20} />
                 </button>
               </motion.div>
             ))}
@@ -150,10 +156,15 @@ const Inventory: React.FC<InventoryProps> = ({ onClose }) => {
         </div>
 
         {filteredCars.length === 0 && (
-          <div className="py-40 text-center">
-            <p className="text-white/20 uppercase tracking-[0.5em] text-xs">No matching vehicles found in our Miami collection.</p>
+          <div className="py-48 text-center bg-white/[0.02] rounded-3xl border border-dashed border-white/5">
+            <p className="text-white/20 uppercase tracking-[0.8em] text-[11px] font-medium font-display">No matching vehicles identified.</p>
           </div>
         )}
+      </div>
+      
+      {/* Footer in Modal */}
+      <div className="max-w-[1400px] mx-auto mt-32 mb-10 text-center opacity-10">
+        <p className="text-[9px] uppercase tracking-[1em] text-white">New Era Miami / Elite Selection Hub</p>
       </div>
     </motion.div>
   );
